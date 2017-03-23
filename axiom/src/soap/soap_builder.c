@@ -870,8 +870,6 @@ axiom_soap_builder_identify_soap_version(
     axiom_element_t *om_ele = NULL;
     axis2_char_t *ns_uri = NULL;
 
-    AXIS2_PARAM_CHECK(env->error, soap_version_uri_from_transport,
-                      AXIS2_FAILURE);
     if (!soap_builder)
     {
         return AXIS2_FAILURE;
