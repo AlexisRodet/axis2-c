@@ -1519,7 +1519,7 @@ guththila_next_char(guththila_t * m, int eof, const axutil_env_t * env)
          m->next < GUTHTHILA_BUFFER_CURRENT_DATA_SIZE(m->buffer))
     {
         c = m->buffer.buff[0][m->next++];
-        return c >= 0 ? c : -1;
+        return c;
     }
     else if (m->reader->type == GUTHTHILA_IO_READER ||
              m->reader->type == GUTHTHILA_FILE_READER)
@@ -1533,7 +1533,7 @@ guththila_next_char(guththila_t * m, int eof, const axutil_env_t * env)
             c = m->buffer.buff[m->buffer.cur_buff][m->next++ -
                                                     GUTHTHILA_BUFFER_PRE_DATA_SIZE
                                                     (m->buffer)];
-            return c >= 0 ? c : -1;
+            return c;
         }
         else if ( m->buffer.cur_buff != -1 &&
                   m->next >= GUTHTHILA_BUFFER_PRE_DATA_SIZE(m->buffer) +
@@ -1611,7 +1611,7 @@ guththila_next_char(guththila_t * m, int eof, const axutil_env_t * env)
             c = m->buffer.buff[m->buffer.cur_buff][m->next++ -
                                                     GUTHTHILA_BUFFER_PRE_DATA_SIZE
                                                     (m->buffer)];
-            return c >= 0 ? c : -1;
+            return c;
         }
         /* Initial stage. We dont' have the array of buffers allocated*/
         else if (m->buffer.cur_buff == -1)
@@ -1626,7 +1626,7 @@ guththila_next_char(guththila_t * m, int eof, const axutil_env_t * env)
                                       GUTHTHILA_BUFFER_DEF_SIZE, env);
             m->buffer.data_size[0] = temp;
             c = m->buffer.buff[0][m->next++];
-            return c >= 0 ? c : -1;
+            return c;
         }
     }
     return -1;
