@@ -973,7 +973,8 @@ guththila_next(guththila_t * m,const axutil_env_t * env)
                     GUTHTHILA_TOKEN_OPEN(m, tok, env);
                     while (loop_state)
                     {
-                        c = guththila_next_char(m, 0, env);
+                        if (c == -1)
+                            return -1;
                         if ('-' == c)
                         {
                             if (2 == guththila_next_no_char(m, 0, c_arra, 2, env) &&
@@ -994,6 +995,7 @@ guththila_next(guththila_t * m,const axutil_env_t * env)
                                 }
                             }
                         }
+                        c = guththila_next_char(m, 0, env);
                     }
                 }
                 else
